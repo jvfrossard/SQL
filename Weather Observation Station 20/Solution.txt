@@ -1,0 +1,16 @@
+In Oracle is very simple, because the median function
+
+SELECT ROUND(MEDIAN(Lat_N), 4)
+FROM Station;
+
+
+In MySQL it is much harder, because we don't have a median function
+
+SELECT ROUND(S.lat_n,4) 
+FROM Station AS S 
+WHERE 
+    (SELECT ROUND(COUNT(S.id)/2)-1 
+     FROM Station) = 
+        (SELECT COUNT(s1.id) 
+         FROM Station AS S1 
+         WHERE S1.Lat_n > S.Lat_n);
