@@ -1,0 +1,6 @@
+SELECT Cy.Continent, ROUND(AVG(C.Population)-0.5)
+FROM Country AS Cy
+JOIN City AS C ON C.CountryCode = Cy.Code
+GROUP BY Cy.Continent;
+
+The -0.5 on ROUND function is to round it DOWN to the nearest integer (without it, MySQL round it up).
